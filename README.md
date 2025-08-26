@@ -78,33 +78,37 @@ Each robot is described using two lines (with optional blank lines between robot
 1 1 E
 RFRFRFRF
 
+* 5 3 → grid upper-right corner (lower-left is implicitly 0 0)
+* 1 1 E → robot starts at (x=1, y=1) facing East
+* RFRFRFRF → instructions (R=right, L=left, F=forward)
+
 ## LOST & Scent Rule
-•	If a forward move would take a robot off the grid, the robot is considered LOST.
-•	When this happens, the robot leaves a scent at its last safe position.
-•	Any future robot reaching that same cell and facing the same off-grid move will ignore the move and continue executing the rest of its program.
+* If a forward move would take a robot off the grid, the robot is considered LOST.
+* When this happens, the robot leaves a scent at its last safe position.
+* Any future robot reaching that same cell and facing the same off-grid move will ignore the move and continue executing the rest of its program.
 
 ## Design Notes
-•	Scent granularity → scents are stored per grid coordinate (not per orientation). This follows the challenge’s wording: “from a grid point.”
-•	Extensible commands → new commands can be added by extending Robot.apply(...).
-•	Validation → inputs are assumed valid per the spec. If they aren’t, a ValueError is raised immediately (fail fast).
-•	Dependencies → none beyond the Python standard library, to keep things easy to run and review.
+**Scent granularity** → scents are stored per grid coordinate (not per orientation). This follows the challenge’s wording: “from a grid point.”
+**Extensible commands** → new commands can be added by extending Robot.apply(...).
+**Validation** → inputs are assumed valid per the spec. If they aren’t, a ValueError is raised immediately (fail fast).
+**Dependencies** → none beyond the Python standard library, to keep things easy to run and review.
 
 ##  Approach (Implementation Overview)
 
 1. Parse input
-•	Read grid size.
-•	For each robot, parse starting position + instruction string.
-•	Construct a Grid(max_x, max_y) object.
+* Read grid size.
+* For each robot, parse starting position + instruction string.
+* Construct a Grid(max_x, max_y) object.
 
 2. Simulate robots sequentially
-•	Create a Robot(x, y, orientation) for each robot.
-•	Execute its instructions one by one.
+* Create a Robot(x, y, orientation) for each robot.
+* Execute its instructions one by one.
 
 3.	Movement & turning
-•	Turning uses an orientation ring: "NESW".
-•	Movement uses (dx, dy) deltas for each orientation.
+* Turning uses an orientation ring: "NESW".
+* Movement uses (dx, dy) deltas for each orientation.
 
 4.	Handle off-grid moves
-•	If next move goes off the grid, check if the current position is scented.
-•	If scented → ignore the move.
-•	If not scented → mark robot as LOST, add the scent, stop executing its program.
+* If next move goes off the grid, check if the current position is scented.
+* If scented → ignore the move.
+* If not scented → mark robot as LOST, add the scent, stop executing its program.

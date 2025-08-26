@@ -30,7 +30,7 @@ Works with Python 3.9+ on Linux/macOS/Windows.
 
 From the project root:
 
-python3 main.py < sample_input.txt
+* python3 main.py < sample_input.txt
 
 Expected output (from the challenge statement):
 
@@ -43,15 +43,11 @@ To use your own input, replace sample_input.txt with a file in the same format.
 ## Testing
 Run unit tests:
 
-python3 -m unittest discover -s tests -p "test_*.py"
-
+* python3 -m unittest discover -s tests -p "test_*.py"
 OR
-
-python3 -m unittest discover -s tests -p "test_mars.py"
-
+* python3 -m unittest discover -s tests -p "test_mars.py"
 OR
-
-python3 -m unittest
+* python3 -m unittest
 
 ## Input format
 
@@ -88,10 +84,10 @@ RFRFRFRF
 * Any future robot reaching that same cell and facing the same off-grid move will ignore the move and continue executing the rest of its program.
 
 ## Design Notes
-**Scent granularity** → scents are stored per grid coordinate (not per orientation). This follows the challenge’s wording: “from a grid point.”
-**Extensible commands** → new commands can be added by extending Robot.apply(...).
-**Validation** → inputs are assumed valid per the spec. If they aren’t, a ValueError is raised immediately (fail fast).
-**Dependencies** → none beyond the Python standard library, to keep things easy to run and review.
+* Scent granularity → scents are stored per grid coordinate (not per orientation). This follows the challenge’s wording: “from a grid point.”
+* Extensible commands → new commands can be added by extending Robot.apply(...).
+* Validation → inputs are assumed valid per the spec. If they aren’t, a ValueError is raised immediately (fail fast).
+* Dependencies → none beyond the Python standard library, to keep things easy to run and review.
 
 ##  Approach (Implementation Overview)
 

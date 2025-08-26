@@ -20,9 +20,9 @@ martian-robots/
 ## Running
 
 ## 1) Environment (what I used)
-•	macOS (MacBook Pro)
-•	VS Code
-•	Python 3.9+
+* macOS (MacBook Pro)
+* VS Code
+* Python 3.9+
 
 Works with Python 3.9+ on Linux/macOS/Windows.
 
@@ -44,9 +44,9 @@ To use your own input, replace sample_input.txt with a file in the same format.
 Run unit tests:
 
 * python3 -m unittest discover -s tests -p "test_*.py"
-OR
+* OR
 * python3 -m unittest discover -s tests -p "test_mars.py"
-OR
+* OR
 * python3 -m unittest
 
 ## Input format
